@@ -6,123 +6,16 @@
 <link rel='stylesheet' type='text/css'
 	href='fullcalendar/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='BookingCalendar.css' />
-<link rel='stylesheet' type='text/css' href='jquery-color-picker/syronex-colorpicker.css' />
 
 <script type='text/javascript' src='jquery/jquery-1.5.1.min.js'></script>
 <script type='text/javascript'
 	src='jquery/jquery-ui-1.8.13.custom.min.js'></script>
 <script type='text/javascript' src='fullcalendar/fullcalendar.min.js'></script>
-<script type='text/javascript' src='jquery-color-picker/syronex-colorpicker.js'></script>
 <script type='text/javascript' src='underscore.js'></script>
 <script type='text/javascript' src='backbone.js'></script>
 <script type='text/javascript' src='BookingCalendar.js'></script>
 </head>
 <body>
-	<div id='filter'>
-		<form>
-			<fieldset class='ui-helper-reset'>
-				<label for="networkFilter">Network:</label> <select
-					name="networkFilter" class="network"><option value=''>All</option>
-				</select> <label for="siteFilter">Site:</label> <select name="siteFilter"
-					class="site" disabled="disabled"><option value=''>All</option>
-				</select> <label for="areaFilter">Area:</label> <select name="areaFilter"
-					class="area" disabled="disabled"><option value=''>All</option>
-				</select> <label for="productFilter">Product:</label> <select
-					name="product" class="product" disabled="disabled"><option
-						value=''>All</option>
-				</select>
-				<span id="editProduct" class="button">Edit</span>
-				<span id="newProduct" class="button">New</span>
-			</fieldset>			
-		</form>
-	</div>
-	
-	<div id='loading' class='ui-helper-hidden'>loading...</div>
 	<div id='calendar'></div>
-
-	<div id='bookingDialog' class='dialog ui-helper-hidden'>
-		<form>
-			<fieldset class='ui-helper-reset'>
-                <div>
-                    <label for="dates">Dates:</label>
-                    <span class="field">
-                        <span class="startDate"></span> - <span class="endDate"></span>
-                    </span>                 
-                </div>				
-				<div>
-					<label for="title">Title:</label>
-					<textarea id='title' class="field" type="text"></textarea>
-				</div>
-				<div>
-					<label for="network">Network:</label> <select name="id"
-						class="network field">
-						<option value=''>Select</option>
-					</select>
-				</div>
-				<div>
-					<label for="site">Site:</label> <select name="site" class="site field"
-						disabled="disabled">
-						<option value=''>Select</option>
-					</select>
-				</div>
-				<div>
-					<label for="area">Area:</label> <select name="area" class="area field"
-						disabled="disabled">
-						<option value=''>Select</option>
-					</select>
-				</div>
-				<div>
-					<label for="product">Product:</label> <select name="product"
-						class="product field" disabled="disabled">
-						<option value=''>Select</option>
-					</select>
-				</div>
-                <div>
-                    <label for="ioNumber">IO Number:</label>
-                    <input class='ioNumber field' type="text"></input>
-                </div>				
-				<span class="errors">					
-				</span>	
-			</fieldset>
-		</form>
-	</div>
-	
-    <div id='productDialog' class='dialog ui-helper-hidden'>
-        <form>
-            <fieldset class='ui-helper-reset'>
-                <div>
-                    <label for="network">Network:</label> <select name="id"
-                        class="network field">
-                        <option value=''>Select</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="site">Site:</label> <select name="site" class="site field"
-                        disabled="disabled">
-                        <option value=''>Select</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="area">Area:</label> <select name="area" class="area field"
-                        disabled="disabled">
-                        <option value=''>Select</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="name">Name:</label> <input class='name field' type="text"></input>
-                </div>
-                <div>
-                    <label for="color">Color:</label><span id='colorPicker' class='field'></span>
-					<input class='color ui-helper-hidden' type="text"></input>
-                </div>				
-                <div>
-                    <label for="numberOfSlots">Number of slots:</label>
-					<input class='numberOfSlots field' type="text"></input>
-                </div>
-                <span class="errors">                   
-                </span> 
-            </fieldset>
-        </form>
-    </div>	
 </body>
 </html>
