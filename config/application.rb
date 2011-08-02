@@ -40,3 +40,5 @@ module BackboneJsAndFullCalendar
     config.filter_parameters += [:password]
   end
 end
+
+ActiveRecord::Base.include_root_in_json = false

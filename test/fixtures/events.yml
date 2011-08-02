@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: First booking
+  color: Red
+  start: <%= Date.today %>
+  end: <%= 2.days.from_now %>
+
+two:
+  title: Second booking
+  color: Blue
+  start: <%= 1.day.from_now %>
+  end: <%= 4.days.from_now %>
+  
+three:
+  title: Third booking
+  color: Green
+  start: <%= 6.day.from_now %>
+  end: <%= 10.days.from_now %>
+  
