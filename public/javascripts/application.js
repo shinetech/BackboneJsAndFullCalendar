@@ -91,7 +91,7 @@ $(function(){
     var BookingView = Backbone.View.extend({
 		el: $('#bookingDialog'),
         initialize: function() {
-			_.bindAll(this, 'render', 'create', 'open', 'save', 'close', 'remove');			
+			_.bindAll(this, 'render', 'open', 'save', 'close', 'remove');			
 		},
 		render: function() {
 			var buttons = {'Ok': this.save};
@@ -109,21 +109,8 @@ $(function(){
 
 			return this;
 		},
-		create: function() {
-			this.networks.fetch();            
-        },
 		open: function() {
 	        $('#title').val(this.model.get('title'));
-	        
-	        if (this.model.isNew()) {
-                this.$('.network').val(null);
-				this.sites.clear();
-                this.areas.clear();
-                this.products.clear();
-			} else {				
-				// Set the product
-	            new Product({id:this.model.get('productId')}).fetch({success: this.setProduct});
-	        }			
 	    },
 		save: function() {
 			var previousAttributes = this.model.previousAttributes();
