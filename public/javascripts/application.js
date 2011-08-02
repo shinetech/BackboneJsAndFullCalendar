@@ -1,16 +1,16 @@
 $(function(){
-    var Booking = Backbone.Model.extend();
+    var Event = Backbone.Model.extend();
 
-    var Bookings = Backbone.Collection.extend({
-        model: Booking,
+    var Events = Backbone.Collection.extend({
+        model: Event,
         url: 'events'
     }); 
   
-	var BookingsView = Backbone.View.extend({
+	var EventsView = Backbone.View.extend({
         el: $("#calendar"),
         initialize: function(){
             _.bindAll(this, 'render', 'addAll', 'addOne', 'change', 'eventDropOrResize', 'destroy');            
-            this.bookingArray = [];
+            this.fcEvents = [];
             this.collection.bind('reset', this.addAll);
 			this.collection.bind('add', this.addOne);
 			this.collection.bind('change', this.change);
@@ -18,8 +18,8 @@ $(function(){
 			
             this.collection.fetch();
 			
-			this.bookingView = new BookingView();
-			this.bookingView.collection = this.collection;			
+			this.eventView = new EventView();
+			this.eventView.collection = this.collection;			
         },
 		render: function() {
             this.calendar = this.el.fullCalendar({
@@ -32,64 +32,64 @@ $(function(){
                 selectHelper: true,
                 editable: true,
 		        select: _.bind(function(startDate, endDate, allDay) {
-		            this.bookingView.model = 
-					   new Booking({start: startDate.getTime() / 1000, end: endDate.getTime() / 1000});
-					this.bookingView.render();
+		            this.eventView.model = 
+					   new Event({start: startDate.getTime() / 1000, end: endDate.getTime() / 1000});
+					this.eventView.render();
 		        }, this),				
-		        eventClick: _.bind(function(event) {
-                    this.bookingView.model = this.collection.get(event.id);
-					this.bookingView.render();
+		        eventClick: _.bind(function(fcEvent) {
+                    this.eventView.model = this.collection.get(fcEvent.id);
+					this.eventView.render();
 		        }, this),
-                eventDrop: _.bind(function(event, dayDelta, minuteDelta, allDay, revertFunc) {
-					this.eventDropOrResize(event, revertFunc);					
+                eventDrop: _.bind(function(fcEvent, dayDelta, minuteDelta, allDay, revertFunc) {
+					this.eventDropOrResize(fcEvent, revertFunc);					
                 }, this),        
-                eventResize: _.bind(function(event, dayDelta, minuteDelta, revertFunc) {
-					this.eventDropOrResize(event, revertFunc);
+                eventResize: _.bind(function(fcEvent, dayDelta, minuteDelta, revertFunc) {
+					this.eventDropOrResize(fcEvent, revertFunc);
                 }, this)
             });
 			
 			return this;		
 		},
         addAll: function(){
-			// Clear out the bookings that were loaded into the calendar, then reload the new ones
-			this.calendar.fullCalendar('removeEventSource', this.bookingArray);
-			this.bookingArray = this.collection.toJSON();
-			this.calendar.fullCalendar('addEventSource', this.bookingArray);
+			// Clear out the events that were loaded into the calendar, then reload the new ones
+			this.calendar.fullCalendar('removeEventSource', this.fcEvents);
+			this.fcEvents = this.collection.toJSON();
+			this.calendar.fullCalendar('addEventSource', this.fcEvents);
         },
-		addOne: function(booking) {
-			this.el.fullCalendar('renderEvent', booking.toJSON());
+		addOne: function(event) {
+			this.el.fullCalendar('renderEvent', event.toJSON());
 			this.el.fullCalendar('unselect');
 		},
-		change: function(booking) {
-			// Look up the underlying event in the calendar and update its details from the booking
-			var event = this.el.fullCalendar('clientEvents', booking.get('id'))[0];
-			event.title = booking.get('title');
-			event.color = booking.get('color');
-            this.el.fullCalendar('updateEvent', event);			
+		change: function(event) {
+			// Look up the underlying event in the calendar and update its details from the event
+			var fcEvent = this.el.fullCalendar('clientEvents', event.get('id'))[0];
+			fcEvent.title = event.get('title');
+			fcEvent.color = event.get('color');
+            this.el.fullCalendar('updateEvent', fcEvent);			
 		},
-		eventDropOrResize: function(event, revertFunc) {
+		eventDropOrResize: function(fcEvent, revertFunc) {
             var start = event.start;
-			// Lookup the booking that has the ID of the event and update its details
-            var booking = this.collection.get(event.id);
-			var previousAttributes = booking.previousAttributes();                    
-            booking.save({
+			// Lookup the event that has the ID of the event and update its details
+            var event = this.collection.get(fcEvent.id);
+			var previousAttributes = event.previousAttributes();                    
+            event.save({
                 start: start.getTime() / 1000,
                 end: (event.end || start).getTime() / 1000
             }, 
-            {error: function(booking, response) {
-                alert(errorFromBookingSave(response));
-				booking.set(previousAttributes);
+            {error: function(event, response) {
+                alert(errorFromEventSave(response));
+				event.set(previousAttributes);
                 revertFunc();
             }});			
 		},
-        destroy: function(booking) {
-            this.el.fullCalendar('removeEvents', booking.id);         
+        destroy: function(event) {
+            this.el.fullCalendar('removeEvents', event.id);         
         }		
 	});
 
-    // For editing or adding a booking
-    var BookingView = Backbone.View.extend({
-		el: $('#bookingDialog'),
+    // For editing or adding a event
+    var EventView = Backbone.View.extend({
+		el: $('#eventDialog'),
         initialize: function() {
 			_.bindAll(this, 'render', 'open', 'save', 'close', 'remove');			
 		},
@@ -101,7 +101,7 @@ $(function(){
 			_.extend(buttons, {'Cancel': this.close});
 			this.el.dialog({
                 modal: true,
-                title: (this.model.isNew() ? 'New' : 'Edit') + ' Booking',
+                title: (this.model.isNew() ? 'New' : 'Edit') + ' Event',
 				create: this.create,
 		        open: this.open,
 	            buttons: buttons		
@@ -114,9 +114,9 @@ $(function(){
 	    },
 		save: function() {
 			var previousAttributes = this.model.previousAttributes();
-			function error(booking, response) {
-	            this.$(".errors").text(errorFromBookingSave(response));
-	            booking.set(previousAttributes);				
+			function error(event, response) {
+	            this.$(".errors").text(errorFromEventSave(response));
+	            event.set(previousAttributes);				
 			}
 			
 			this.model.set({'title': this.$('#title').val()});
@@ -137,8 +137,8 @@ $(function(){
     
     // Bootstrap everything in a function to avoid polluting the global namespace
 	(function() {
-		var bookings = new Bookings();		
-		var bookingsView = new BookingsView({collection: bookings});
-		bookingsView.render();
+		var events = new Events();		
+		var eventsView = new EventsView({collection: events});
+		eventsView.render();
 	}).call();
 });
