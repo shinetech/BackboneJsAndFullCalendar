@@ -16,29 +16,7 @@ body {
 	width:170px;	
 }
 
-#productDialog .numberOfSlots {
-    width:25px;    
-}
-
 #calendar {
 	width: 900px;
 	margin: 0 auto;
-	}
-	
-#loading {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	}
-	
-#filter {
-	margin-bottom: 20px;
-}
-
-#filter select {
-	width:150px;	
-}
-
-#filter .button {
-    font-size: 0.8em;    
 }
