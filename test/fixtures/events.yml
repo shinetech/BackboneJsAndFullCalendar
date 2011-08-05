@@ -3,18 +3,18 @@
 one:
   title: First booking
   color: Red
-  start: <%= Date.today %>
-  end: <%= 2.days.from_now %>
+  start: 2011-08-01T14:00:00Z
+  end: 2011-08-03T14:00:00Z
 
 two:
   title: Second booking
   color: Blue
-  start: <%= 1.day.from_now %>
-  end: <%= 4.days.from_now %>
+  start: 2011-08-02T14:00:00Z
+  end: 2011-08-05T14:00:00Z
   
 three:
   title: Third booking
   color: Green
-  start: <%= 6.day.from_now %>
-  end: <%= 10.days.from_now %>
+  start: 2011-08-07T14:00:00Z
+  end: 2011-08-11T14:00:00Z
   

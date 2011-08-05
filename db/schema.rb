@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20110802071408) do
   create_table "events", :force => true do |t|
     t.string   "title"
     t.string   "color"
-    t.date     "start"
-    t.date     "end"
+    t.datetime "start"
+    t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
