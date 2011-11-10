@@ -1,1 +1,5 @@
-Sample code for http://blog.shinetech.com/2011/08/05/building-a-shared-calendar-with-backbone-js-and-fullcalendar-a-step-by-step-tutorial/
+Sample code for http://blog.shinetech.com/2011/08/05/building-a-shared-calendar-with-backbone-js-and-fullcalendar-a-step-by-step-tutorial
+
+Note that the data used in the demo is store as fixtures, not seed data. Thus you should use the following to load it:
+
+rake db:fixtures:load
