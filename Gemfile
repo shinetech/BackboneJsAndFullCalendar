@@ -7,7 +7,9 @@ gem 'sqlite3'
 
 
 gem 'haml-rails'
+gem 'twitter-bootstrap-rails'
 gem 'decent_exposure'
+gem 'simple_form'
 gem 'json'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
