@@ -1,3 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery.ui.all
+//= require fullcalendar
+//= require underscore
+//= require backbone
+
 $(function(){
     var Event = Backbone.Model.extend();
 
