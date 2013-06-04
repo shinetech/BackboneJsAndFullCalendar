@@ -1,7 +1,8 @@
 /* ...
  * *= require jquery.ui.all
  * *= require fullcalendar
- * *= require jquery-ui-1.8.13.custom
+ * *=# require jquery-ui-1.8.13.custom
+ * *= require jquery-minicolors
  * *= require bootstrap_and_overrides
  * *= require_self
  * */
@@ -9,22 +10,22 @@
 @CHARSET "UTF-8";
 
 body {
-	margin-top: 40px;
-	text-align: center;
-	font-size: 14px;
-	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-	}
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
 
 .dialog label {
-	width:90px;
-    float:left;
+  width:90px;
+  float:left;
 }
 
 .dialog .field {
-	width:170px;	
+  width:170px;
 }
 
 #calendar {
-	width: 900px;
-	margin: 0 auto;
+  width: 900px;
+  margin: 0 auto;
 }

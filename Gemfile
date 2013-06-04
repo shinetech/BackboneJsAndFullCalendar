@@ -10,12 +10,14 @@ gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'decent_exposure'
 gem 'simple_form'
+gem 'rails-backbone'
 gem 'json'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'jquery-rest-rails'
 gem 'fullcalendar-rails'
+gem 'jquery-minicolors-rails'
 gem 'awesome_print'
 
 group :assets do

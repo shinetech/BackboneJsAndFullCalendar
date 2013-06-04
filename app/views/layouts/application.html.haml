@@ -1,9 +1,44 @@
-!!!
-%html
+!!! 5
+%html(lang="en")
   %head
-    %title BackboneJsAndFullCalendar
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
-    = csrf_meta_tag
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "BackboneJsAndFullCalendar"
+    = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = stylesheet_link_tag "application", :media => "all"
+    %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
+    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
+    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
+    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
+    %link(href="favicon.ico" rel="shortcut icon")
+
+
   %body
-    = yield
+    .navbar.navbar-fluid-top
+      .navbar-inner
+        .container-fluid
+          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand(href="#") BackboneJsAndFullCalendar
+          .container.nav-collapse
+            %ul.nav
+              %li= link_to t(:calendar), root_path
+    .container-fluid
+      .row-fluid
+        .span12
+          = bootstrap_flash
+          = yield
+    
+      %footer
+        %p &copy; Paul & Moe 2013
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

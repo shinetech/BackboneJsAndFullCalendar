@@ -1,6 +1,26 @@
-#calendar
-#eventDialog.dialog.ui-helper-hidden
-  %form
-    %div
-      %label Title:
-      %input#title.field{:type => "text"}/
+.row-fluid
+  .span2.offset1
+    .well.sidebar-nav
+      %ul.nav.nav-list
+        %li.nav-header Departments
+        - Department.all.each do |d|
+          %li= d.name
+      = simple_form_for(department, :html => {:class => 'form-horizontal' }) do |f|
+        = f.input :name
+        = f.input :description
+        = f.input :color, as: :minicolors, input_html: {data: { minicolors: {theme: :bootstrap, swatchPosition: :right}}}
+        = f.button :submit, :class => 'pull-right'
+
+  .span9
+    #calendar
+    #eventDialog.dialog.ui-helper-hidden
+      = simple_form_for(Event.new, :html => {:class => 'form-horizontal' }) do |f|
+        = f.input :title
+        =# f.input :start, input_html: { class: 'datepicker' }
+        =# f.input :end
+        = f.association :department
+        =# f.button :submit, :class => 'pull-right'
+
+-content_for :page_footer do 
+  :javascript 
+    $('#datepicker').datepicker()
