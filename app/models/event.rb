@@ -1,6 +1,10 @@
 class Event < ActiveRecord::Base
   belongs_to :department
   delegate :color, :to => :department
+ 
+  validates_presence_of :title
+  validates_presence_of :department_id
+
   def as_json(options={})
     super(:methods => [:color])
   end

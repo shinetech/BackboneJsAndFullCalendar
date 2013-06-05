@@ -4,10 +4,14 @@
       %ul.nav.nav-list
         %li.nav-header Departments
         - Department.all.each do |d|
-          %li= d.name
+          %li{:style => "color:#{d.color}"}= d.name.titleize
+      %br
+      %br
+      %br
+      %br
       = simple_form_for(department, :html => {:class => 'form-horizontal' }) do |f|
         = f.input :name
-        = f.input :description
+        = #f.input :description
         = f.input :color, as: :minicolors, input_html: {data: { minicolors: {theme: :bootstrap, swatchPosition: :right}}}
         = f.button :submit, :class => 'pull-right'
 
