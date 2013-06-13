@@ -1,0 +1,34 @@
+/* ...
+ * *= require jquery.ui.all
+ * *= require fullcalendar
+ * *=# require jquery-ui-1.8.13.custom
+ * *= require jquery-minicolors
+ * *= require bootstrap_and_overrides
+ * *= require_self
+ * */
+
+@CHARSET "UTF-8";
+
+body {
+  background-color: #F6EFE7;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+
+.dialog label {
+  width:90px;
+  float:left;
+}
+
+.dialog .field {
+  width:170px;
+}
+
+#calendar {
+  background-color: #FFF;
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+}

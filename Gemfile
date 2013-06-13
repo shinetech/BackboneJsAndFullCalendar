@@ -1,31 +1,36 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+gem 'rails', '3.2.13'
+#gem 'rails', '3.1.0'
+ruby "1.9.3"
 
-gem 'rails', '3.0.9'
+gem 'pg'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'haml-rails'
+gem 'twitter-bootstrap-rails'
+gem 'decent_exposure'
+gem 'simple_form'
+gem 'rails-backbone'
+gem 'json'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
-gem 'sqlite3'
+gem 'jquery-rest-rails'
+gem 'fullcalendar-rails'
+gem 'jquery-minicolors-rails'
+gem 'awesome_print'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+  gem 'uglifier', '>= 1.0.3'
+end
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+group :development, :test do
+  gem 'debugger'
+  gem 'debugger-ruby_core_source' #, github: 'cldwalker/debugger-ruby_core_source'
+  gem 'populator'
+end
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
 
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+

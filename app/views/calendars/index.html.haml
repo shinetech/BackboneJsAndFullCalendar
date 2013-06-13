@@ -1,0 +1,69 @@
+:css
+  .calendar {
+    font-size: 13px;
+    line-height: 17px;
+    margin: 5px 0;
+    padding-left: 27px;
+    position: relative;
+  }
+
+  div.calendar_display .swatch > a.active {
+      background: url("https://d3dma7a8zw52bz.cloudfront.net/assets/calendar/swatch_checkmark-9800aaa82d9175263ac33045d5a5a624.png") no-repeat scroll center center transparent;
+  }
+  div.calendar_display .swatch > a {
+    display: block;
+    height: 14px;
+    padding: 0;
+    width: 16px;
+  }
+  a {
+    background: none repeat scroll 0 0 transparent;
+    color: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 2px 0;
+    text-decoration: none;
+    vertical-align: baseline;
+  }
+
+
+.row-fluid
+  .span2.offset1
+    .well.sidebar-nav
+      %ul.nav.nav-list
+        %li.nav-header Calendars
+        - calendars.each do |c|
+          %li
+            =check_box("post", "validated")
+            -#{:style => "color:#{c.color}"}
+            = c.name.titleize
+      
+      %ul.have_not_been_shared
+        %li#calendar_540529.calendar{"data-bucket-id" => "540529", "data-bucket-type" => "calendar"}
+          %span.swatch{:style => "background-color: #ec61a2"}
+            %a.active{"data-behavior" => "toggle_bucket", :href => "#"}
+          %a{"data-behavior" => "zoom_in", :href => "#", :title => "Only show this calendar"} General
+          %a{"data-behavior" => "edit_bucket", :href => "#", :title => "Change this calendar's name, color, and more"} Settings 
+      %br
+      %br
+      %br
+      %br
+      = simple_form_for(Calendar.new, :html => {:class => 'form-horizontal' }) do |f|
+        = f.input :name
+        = #f.input :description
+        = f.input :color, as: :minicolors, input_html: {data: { minicolors: {theme: :bootstrap, swatchPosition: :right}}}
+        = f.button :submit, :class => 'pull-right'
+
+  .span9
+    #calendar
+    #eventDialog.dialog.ui-helper-hidden
+      = simple_form_for(Event.new, :html => {:class => 'form-horizontal' }) do |f|
+        = f.input :title
+        =# f.input :start, input_html: { class: 'datepicker' }
+        =# f.input :end
+        = f.association :calendar
+        =# f.button :submit, :class => 'pull-right'
+
+-content_for :page_footer do 
+  :javascript 
+    $('#datepicker').datepicker()

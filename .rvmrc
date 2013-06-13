@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+environment_id="ruby-1.9.3-p392@backbonejsandfullcalendar"
+
+if [[ -d "${rvm_path:-$HOME/.rvm}/environments" \
+  && -s "${rvm_path:-$HOME/.rvm}/environments/$environment_id" ]] ; then
+  \. "${rvm_path:-$HOME/.rvm}/environments/$environment_id"
+else
+  # If the environment file has not yet been created, use the RVM CLI to select.
+  rvm --create  "$environment_id"
+fi
+
