@@ -3,8 +3,7 @@ gem 'rails', '3.2.13'
 #gem 'rails', '3.1.0'
 ruby "1.9.3"
 
-gem 'sqlite3'
-
+gem 'pg'
 
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'

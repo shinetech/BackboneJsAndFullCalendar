@@ -10,6 +10,7 @@
 @CHARSET "UTF-8";
 
 body {
+  background-color: #F6EFE7;
   margin-top: 40px;
   text-align: center;
   font-size: 14px;
@@ -26,6 +27,8 @@ body {
 }
 
 #calendar {
-  width: 900px;
+  background-color: #FFF;
+  width: 70%;
   margin: 0 auto;
+  padding: 20px;
 }

@@ -1,6 +1,6 @@
 BackboneJsAndFullCalendar::Application.routes.draw do
   resources :events
-  resources :departments
+  resources :calendars
   root :to => "calendars#index"
 
   # The priority is based upon order of creation:

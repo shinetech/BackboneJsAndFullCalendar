@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603164838) do
+ActiveRecord::Schema.define(:version => 20130605145644) do
 
-  create_table "departments", :force => true do |t|
+  create_table "calendars", :force => true do |t|
     t.string   "name"
     t.string   "color"
     t.text     "description"
@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(:version => 20130603164838) do
     t.string   "title"
     t.datetime "start"
     t.datetime "end"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.boolean  "all_day",       :default => false
-    t.string   "description",   :default => ""
-    t.integer  "department_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "all_day",     :default => false
+    t.string   "description", :default => ""
+    t.integer  "calendar_id"
   end
 
 end
